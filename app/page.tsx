@@ -54,7 +54,7 @@ return ( <> {/* Hero Section */} <section className="relative overflow-hidden"> 
 
       {/* View More Button */}
       <div className="mt-12 text-center">
-        <a href="/companions/page" className="inline-block px-8 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300 transition">
+        <a href="/companions/" className="inline-block px-8 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300 transition">
           View More Companions
         </a>
       </div>
