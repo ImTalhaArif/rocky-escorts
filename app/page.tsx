@@ -51,6 +51,13 @@ return ( <> {/* Hero Section */} <section className="relative overflow-hidden"> 
           </div>
         ))}
       </div>
+
+      {/* View More Button */}
+      <div className="mt-12 text-center">
+        <a href="/companions/page" className="inline-block px-8 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300 transition">
+          View More Companions
+        </a>
+      </div>
     </div>
   </section>
 
