@@ -4,7 +4,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" }); const pla
 
 export const metadata: Metadata = { title: "Rocky Escorts | Elite & Discreet Companionship in Karachi", description: "Rocky Escorts offers elite and discreet companionship in Karachi. Verified profiles, private bookings, and absolute confidentiality.", robots: "index, follow", };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) { return ( <html lang="en" className={${inter.variable} ${playfair.variable}}> <body className="bg-neutral-950 text-neutral-100 antialiased relative"> {/* Background Image with Blur */} <div className="absolute inset-0 z-0"> <img src="/backgrounds/premium-bg.jpg" alt="Background" className="w-full h-full object-cover blur-sm opacity-40" /> </div>
+export default function RootLayout({ children }: { children: React.ReactNode }) { return ( <html lang="en" className={${inter.variable} ${playfair.variable}}> <body className="bg-neutral-950 text-neutral-100 antialiased relative"> {/* Background Image with Blur */} <div className="absolute inset-0 z-0"> <img src="premium-bg.jpg" alt="Background" className="w-full h-full object-cover blur-sm opacity-40" /> </div>
 
 <div className="relative z-10 min-h-screen flex flex-col">
       {/* Header */}
