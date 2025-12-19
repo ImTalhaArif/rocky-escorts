@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const API_URL =
   "https://niofuewv64pr4am2dofpqywgfy0awmbp.lambda-url.eu-north-1.on.aws/";
@@ -31,10 +31,10 @@ export default function AdminPage() {
 
   /* ---------------- LOGIN ---------------- */
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (email === "admin@gmail.com" && password === "admin123") {
       setIsLoggedIn(true);
-      fetchModels();
+      await fetchModels();
     } else {
       alert("Invalid credentials");
     }
@@ -43,9 +43,21 @@ export default function AdminPage() {
   /* ---------------- FETCH MODELS ---------------- */
 
   const fetchModels = async () => {
-    const res = await fetch(API_URL);
-    const data = await res.json();
-    setModels(data);
+    try {
+      const res = await fetch(API_URL);
+      const text = await res.text();
+      const data = text ? JSON.parse(text) : {};
+
+      // ✅ FIX: DynamoDB scan returns { Items: [] }
+      const items: Model[] = Array.isArray(data?.Items)
+        ? data.Items
+        : [];
+
+      setModels(items);
+    } catch (err) {
+      console.error("Fetch models failed:", err);
+      setModels([]);
+    }
   };
 
   /* ---------------- ADD / UPDATE MODEL ---------------- */
@@ -92,7 +104,7 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="w-full max-w-sm bg-neutral-950 border border-neutral-800 rounded-2xl p-8">
-          <h2 className="text-2xl font-[var(--font-playfair)] text-center mb-6">
+          <h2 className="text-2xl text-center mb-6">
             Admin Login
           </h2>
 
@@ -127,9 +139,7 @@ export default function AdminPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-14">
-      <h1 className="text-3xl font-[var(--font-playfair)] mb-10">
-        Admin Panel
-      </h1>
+      <h1 className="text-3xl mb-10">Admin Panel</h1>
 
       {/* ADD MODEL */}
       <div className="bg-neutral-950 border border-neutral-800 rounded-2xl p-6 mb-12">
@@ -224,6 +234,14 @@ export default function AdminPage() {
                 </td>
               </tr>
             ))}
+
+            {models.length === 0 && (
+              <tr>
+                <td colSpan={6} className="p-6 text-center text-neutral-500">
+                  No models found
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
