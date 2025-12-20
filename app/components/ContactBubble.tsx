@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Message = {
   from: "bot" | "user";
@@ -8,63 +8,40 @@ type Message = {
 };
 
 const RESPONSES: { keywords: string[]; reply: string }[] = [
-  { keywords: ["price", "rates", "charges", "cost"], reply: "Rates vary depending on the companion and time. Please contact us for exact details." },
+  { keywords: ["price", "rate", "charges", "cost"], reply: "Rates vary depending on the companion and duration. Please contact us for exact details." },
   { keywords: ["booking", "book"], reply: "Booking is simple. Choose a companion and contact us directly. Advance confirmation is required." },
   { keywords: ["availability", "available"], reply: "Availability changes daily. Please contact us for real-time confirmation." },
-  { keywords: ["location", "area", "karachi"], reply: "We provide services across major areas of Karachi. Location is shared after confirmation." },
-  { keywords: ["privacy", "confidential"], reply: "Your privacy is 100% protected. No personal information is ever shared." },
-  { keywords: ["real", "verified"], reply: "All profiles are verified and carefully reviewed for authenticity." },
-  { keywords: ["time", "hours"], reply: "Bookings are available hourly and for longer durations depending on the companion." },
+  { keywords: ["location", "karachi", "area"], reply: "We provide services across major areas of Karachi. Location details are shared after confirmation." },
+  { keywords: ["privacy", "confidential"], reply: "Your privacy is fully protected. No personal data is ever shared." },
+  { keywords: ["verified", "real"], reply: "All profiles are verified and reviewed for authenticity." },
+  { keywords: ["hotel"], reply: "Hotel and private residence options may be available depending on booking." },
+  { keywords: ["home"], reply: "Home visits can be discussed privately based on location." },
+  { keywords: ["time", "hours"], reply: "Hourly and extended bookings are available depending on the companion." },
   { keywords: ["payment"], reply: "Payment details are shared privately after booking confirmation." },
   { keywords: ["safe", "security"], reply: "Safety, respect, and consent are our top priorities." },
   { keywords: ["age"], reply: "All companions are 18+ and legally verified." },
-
-  // --- Bulk realistic Q&A ---
-  { keywords: ["hotel"], reply: "Hotel and private residence options are available depending on the booking." },
-  { keywords: ["home"], reply: "Home visits may be available based on location and confirmation." },
-  { keywords: ["couple"], reply: "Couple companionship can be arranged upon request." },
-  { keywords: ["party"], reply: "Event and party companionship is available with advance notice." },
-  { keywords: ["discreet"], reply: "Discretion is strictly maintained at all times." },
-  { keywords: ["photos"], reply: "All photos on the website are genuine and recent." },
-  { keywords: ["fake"], reply: "We do not use fake profiles. Authenticity is guaranteed." },
-  { keywords: ["advance"], reply: "Advance booking is recommended to ensure availability." },
-  { keywords: ["same day"], reply: "Same-day bookings may be possible depending on availability." },
-  { keywords: ["long time"], reply: "Extended bookings are available upon request." },
-  { keywords: ["overnight"], reply: "Overnight companionship can be discussed privately." },
-  { keywords: ["dress"], reply: "Companions present themselves elegantly and professionally." },
-  { keywords: ["language"], reply: "English and Urdu communication is available." },
-  { keywords: ["respect"], reply: "Mutual respect and boundaries are strictly followed." },
-  { keywords: ["meeting"], reply: "Meeting details are shared after booking confirmation." },
-  { keywords: ["contact"], reply: "You can chat here or contact us directly on WhatsApp." },
-  { keywords: ["manager"], reply: "A dedicated coordinator assists with all bookings." },
-  { keywords: ["first time"], reply: "We guide first-time clients with complete professionalism." },
-  { keywords: ["cancel"], reply: "Cancellation policies are explained during booking." },
-  { keywords: ["delay"], reply: "We keep clients informed in case of delays." },
-  { keywords: ["late"], reply: "Late-night bookings may be available." },
-  { keywords: ["schedule"], reply: "Flexible scheduling options are available." },
-  { keywords: ["city"], reply: "Services are limited to Karachi only." },
-  { keywords: ["elite"], reply: "Our platform focuses on premium companionship." },
-  { keywords: ["luxury"], reply: "Luxury experiences are available upon request." },
-  { keywords: ["trust"], reply: "Client trust is our foundation." },
-  { keywords: ["secure"], reply: "Secure and private communication is ensured." },
-  { keywords: ["anonymous"], reply: "You may remain anonymous throughout the process." },
-  { keywords: ["confirm"], reply: "Confirmation is shared once booking is finalized." },
-  { keywords: ["today"], reply: "Please contact us for today’s availability." },
-  { keywords: ["now"], reply: "Immediate assistance is available via WhatsApp." },
-  { keywords: ["hi", "hello"], reply: "Hello 👋 How can I assist you today?" },
+  { keywords: ["hi", "hello", "hey"], reply: "Hello 👋 How may I assist you today?" },
 ];
 
 export default function ContactBubble() {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<"menu" | "chat">("menu");
   const [messages, setMessages] = useState<Message[]>([
-    { from: "bot", text: "Hello 👋 Welcome to Rocky Escorts. How may I assist you?" },
+    { from: "bot", text: "Hello 👋 Welcome to Rocky Escorts. How may I assist you today?" },
   ]);
   const [input, setInput] = useState("");
+  const [typing, setTyping] = useState(false);
+
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const whatsappLink =
     "https://wa.me/923161309183?text=" +
     encodeURIComponent("Hello, I’m reaching out from the Rocky Escorts website.");
+
+  // 🔽 Auto-scroll to bottom
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, typing]);
 
   const getBotReply = (text: string) => {
     const lower = text.toLowerCase();
@@ -76,20 +53,51 @@ export default function ContactBubble() {
     return "Thank you for your message. For detailed assistance, please contact us on WhatsApp.";
   };
 
+  // ⌨️ Typing effect
+  const typeBotMessage = (fullText: string) => {
+    let index = 0;
+    setTyping(true);
+
+    const interval = setInterval(() => {
+      index++;
+      setMessages(prev => {
+        const last = prev[prev.length - 1];
+        if (last?.from === "bot" && last.text.endsWith("…")) {
+          return [...prev.slice(0, -1), { from: "bot", text: fullText.slice(0, index) + "…" }];
+        }
+        return [...prev, { from: "bot", text: fullText.slice(0, index) + "…" }];
+      });
+
+      if (index >= fullText.length) {
+        clearInterval(interval);
+        setMessages(prev => [
+          ...prev.slice(0, -1),
+          { from: "bot", text: fullText },
+        ]);
+        setTyping(false);
+      }
+    }, 20);
+  };
+
   const sendMessage = () => {
-    if (!input.trim()) return;
+    if (!input.trim() || typing) return;
 
-    const userMsg: Message = { from: "user", text: input };
-    const botMsg: Message = { from: "bot", text: getBotReply(input) };
-
-    setMessages(prev => [...prev, userMsg, botMsg]);
+    const userText = input;
     setInput("");
+
+    setMessages(prev => [...prev, { from: "user", text: userText }]);
+
+    const reply = getBotReply(userText);
+
+    setTimeout(() => {
+      typeBotMessage(reply);
+    }, 500);
   };
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {open && (
-        <div className="mb-4 w-80 h-[440px] bg-neutral-950 border border-neutral-800 rounded-2xl shadow-xl flex flex-col">
+        <div className="mb-4 w-80 h-[460px] bg-neutral-950 border border-neutral-800 rounded-2xl shadow-xl flex flex-col">
           {/* Header */}
           <div className="p-4 border-b border-neutral-800 flex justify-between items-center">
             <p className="font-medium text-amber-400">Rocky Escorts</p>
@@ -132,6 +140,7 @@ export default function ContactBubble() {
                     {m.text}
                   </div>
                 ))}
+                <div ref={messagesEndRef} />
               </div>
 
               <div className="p-3 border-t border-neutral-800">
@@ -140,12 +149,14 @@ export default function ContactBubble() {
                     value={input}
                     onChange={e => setInput(e.target.value)}
                     onKeyDown={e => e.key === "Enter" && sendMessage()}
-                    placeholder="Type your message..."
+                    placeholder={typing ? "Bot is typing…" : "Type your message..."}
+                    disabled={typing}
                     className="flex-1 px-3 py-2 rounded-lg bg-neutral-900 border border-neutral-800 text-neutral-100"
                   />
                   <button
                     onClick={sendMessage}
-                    className="px-4 py-2 rounded-lg bg-amber-400 text-neutral-900 font-medium"
+                    disabled={typing}
+                    className="px-4 py-2 rounded-lg bg-amber-400 text-neutral-900 font-medium disabled:opacity-50"
                   >
                     Send
                   </button>
