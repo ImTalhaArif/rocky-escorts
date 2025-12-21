@@ -211,7 +211,7 @@ export default function ContactBubble() {
         target="_blank"
         className="fixed bottom-6 left-6 w-16 h-16 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50"
       >
-        <img src="/whatsapp-icon.jpg" alt="WhatsApp" className="w-10 h-10" />
+        <img src="/whatsapp-icon.png" alt="WhatsApp" className="w-10 h-10" />
       </a>
 
       {/* Chat Bubble on the right */}
