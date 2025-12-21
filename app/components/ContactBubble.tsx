@@ -159,7 +159,7 @@ export default function ContactBubble() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const whatsappLink =
-    "https://wa.me/923161309183?text=" +
+    "https://wa.me/923708540579?text=" +
     encodeURIComponent("Hello, I’m reaching out from the Rocky Escorts website.");
 
   useEffect(() => {
