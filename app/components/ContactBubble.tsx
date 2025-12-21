@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type Message = {
-  from: "bot" | "user";
-  text: string;
-};
+type Message = { from: "bot" | "user"; text: string };
 
 const RESPONSES: { keywords: string[]; reply: string }[] = [
   { keywords: ["price", "rate", "charges", "cost"], reply: "Rates vary depending on the companion and duration. Please contact us for exact details." },
@@ -21,7 +18,6 @@ const RESPONSES: { keywords: string[]; reply: string }[] = [
   { keywords: ["safe", "security"], reply: "Safety, respect, and consent are our top priorities." },
   { keywords: ["age"], reply: "All companions are 18+ and legally verified." },
   { keywords: ["hi", "hello", "hey"], reply: "Hello 👋 How may I assist you today?" },
-  // Add more responses up to 50 as you want
 ];
 
 export default function ContactBubble() {
@@ -32,14 +28,12 @@ export default function ContactBubble() {
   ]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
-
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const whatsappLink =
     "https://wa.me/923161309183?text=" +
     encodeURIComponent("Hello, I’m reaching out from the Rocky Escorts website.");
 
-  // Auto-scroll chat to latest
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, typing]);
@@ -47,9 +41,7 @@ export default function ContactBubble() {
   const getBotReply = (text: string) => {
     const lower = text.toLowerCase();
     for (const r of RESPONSES) {
-      if (r.keywords.some(k => lower.includes(k))) {
-        return r.reply;
-      }
+      if (r.keywords.some(k => lower.includes(k))) return r.reply;
     }
     return "Thank you for your message. For detailed assistance, please contact us on WhatsApp.";
   };
@@ -57,23 +49,18 @@ export default function ContactBubble() {
   const typeBotMessage = (fullText: string) => {
     let index = 0;
     setTyping(true);
-
     const interval = setInterval(() => {
       index++;
       setMessages(prev => {
         const last = prev[prev.length - 1];
-        if (last?.from === "bot") {
+        if (last?.from === "bot" && last.text.endsWith("…")) {
           return [...prev.slice(0, -1), { from: "bot", text: fullText.slice(0, index) + "…" }];
         }
         return [...prev, { from: "bot", text: fullText.slice(0, index) + "…" }];
       });
-
       if (index >= fullText.length) {
         clearInterval(interval);
-        setMessages(prev => [
-          ...prev.slice(0, -1),
-          { from: "bot", text: fullText },
-        ]);
+        setMessages(prev => [...prev.slice(0, -1), { from: "bot", text: fullText }]);
         setTyping(false);
       }
     }, 20);
@@ -81,43 +68,33 @@ export default function ContactBubble() {
 
   const sendMessage = () => {
     if (!input.trim() || typing) return;
-
     const userText = input;
     setInput("");
-
     setMessages(prev => [...prev, { from: "user", text: userText }]);
-
     const reply = getBotReply(userText);
-
-    setTimeout(() => {
-      typeBotMessage(reply);
-    }, 500);
+    setTimeout(() => typeBotMessage(reply), 500);
   };
 
   return (
     <>
-      {/* WhatsApp Bubble - Left */}
-      <div className="fixed bottom-6 left-6 z-50">
-        <a
-          href={whatsappLink}
-          target="_blank"
-          className="w-14 h-14 rounded-full bg-green-500 text-neutral-100 shadow-lg hover:bg-green-600 flex items-center justify-center transition"
-        >
-          📲
-        </a>
-      </div>
+      {/* WhatsApp Bubble on the left */}
+      <a
+        href={whatsappLink}
+        target="_blank"
+        className="fixed bottom-6 left-6 w-16 h-16 rounded-full bg-[#25D366] flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50"
+      >
+        <img src="/whatsapp-icon.png" alt="WhatsApp" className="w-10 h-10" />
+      </a>
 
-      {/* Chat Bubble - Right */}
+      {/* Chat Bubble on the right */}
       <div className="fixed bottom-6 right-6 z-50">
         {open && (
           <div className="mb-4 w-80 h-[460px] bg-neutral-950 border border-neutral-800 rounded-2xl shadow-xl flex flex-col">
-            {/* Header */}
             <div className="p-4 border-b border-neutral-800 flex justify-between items-center">
               <p className="font-medium text-amber-400">Rocky Escorts</p>
               <button onClick={() => setOpen(false)} className="text-xl">×</button>
             </div>
 
-            {/* Menu */}
             {mode === "menu" && (
               <div className="flex-1 flex flex-col justify-center gap-4 p-6">
                 <button
@@ -126,18 +103,9 @@ export default function ContactBubble() {
                 >
                   💬 Instant Chat
                 </button>
-
-                <a
-                  href={whatsappLink}
-                  target="_blank"
-                  className="w-full py-3 rounded-full bg-amber-400 text-neutral-900 font-medium text-center hover:bg-amber-300 transition"
-                >
-                  📲 WhatsApp Us
-                </a>
               </div>
             )}
 
-            {/* Chat */}
             {mode === "chat" && (
               <>
                 <div className="flex-1 p-4 space-y-3 overflow-y-auto text-sm">
@@ -187,10 +155,9 @@ export default function ContactBubble() {
           </div>
         )}
 
-        {/* Floating Button */}
         <button
           onClick={() => setOpen(true)}
-          className="w-14 h-14 rounded-full bg-amber-400 text-neutral-900 shadow-lg hover:bg-amber-300 flex items-center justify-center transition"
+          className="w-14 h-14 rounded-full bg-amber-400 text-neutral-900 shadow-lg hover:bg-amber-300 flex items-center justify-center"
         >
           💬
         </button>
