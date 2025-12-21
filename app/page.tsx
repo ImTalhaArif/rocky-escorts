@@ -56,7 +56,7 @@ export default function HomePage() {
                   className="h-80 w-full object-cover hover:scale-105 transition"
                 />
                 <div className="p-5">
-                  <p className="font-medium">Model {i}</p>
+                  <p className="font-medium"></p>
                   <p className="text-sm text-neutral-400">Karachi • Verified</p>
                 </div>
               </div>
