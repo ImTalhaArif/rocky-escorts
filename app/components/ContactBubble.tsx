@@ -6,7 +6,6 @@ type Message = { from: "bot" | "user"; text: string };
 
 export const RESPONSES: { keywords: string[]; reply: string }[] = [
   { keywords: ["price", "rate", "charges", "cost", "pese", "paisay", "pesay"], reply: "Rates vary depending on the companion and duration. Please contact us for exact details." },
-{ keywords: string[]; reply: string }[] = [
   { keywords: ["big ass", "booty", "curvy", "gaand", "gand"], reply: "We have verified companions matching your preference for curvy or big-ass profiles." },
   { keywords: ["slim", "skinny", "fit"], reply: "Slim and fit companions are available. Contact us for real-time availability." },
   { keywords: ["blonde", "fair hair"], reply: "Hair color preferences can be specified. We have companions with various hair shades." },
