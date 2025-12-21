@@ -1,165 +1,74 @@
 export default function HomePage() {
-  const models = [
-    { id: 1, name: 'Model 1', image: '/model1.jpg' },
-    { id: 2, name: 'Model 2', image: '/model2.jpg' },
-    { id: 3, name: 'Model 3', image: '/model3.jpg' },
-  ];
-
   return (
     <>
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-neutral-950 to-black" />
-        <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.25),transparent_60%)]" />
-
-        <div className="relative max-w-7xl mx-auto px-6 py-28 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold font-[var(--font-playfair)] leading-tight">
-            Private & Respectful Companionship
-            <span className="block text-amber-400 mt-2">
-              Your Privacy Comes First
-            </span>
+      {/* HERO */}
+      <section className="min-h-screen flex items-center justify-center text-center px-6">
+        <div className="max-w-4xl">
+          <h1 className="text-4xl md:text-6xl font-[var(--font-playfair)]">
+            Premium Companionship
+            <span className="block text-amber-400 mt-3">In Karachi</span>
           </h1>
 
-          <p className="mt-6 text-neutral-300 max-w-2xl mx-auto">
-            Safe and private companionship services in Karachi.
-            Verified profiles, direct contact, and full confidentiality.
+          <p className="mt-6 text-neutral-300">
+            Verified elite companions. Absolute privacy. Refined experiences.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="mt-10 flex justify-center gap-4">
             <a
-              href="#profiles"
-              className="px-8 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300 transition"
+              href="/companions"
+              className="px-8 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300"
             >
-              View Profiles
+              View Companions
             </a>
             <a
-              href="#contact"
-              className="px-8 py-4 rounded-full border border-neutral-700 hover:border-neutral-500 transition"
+              href="#privacy"
+              className="px-8 py-4 rounded-full border border-neutral-700 hover:border-neutral-500"
             >
-              Contact Privately
+              Our Discretion
             </a>
           </div>
         </div>
       </section>
 
-      {/* Privacy / Trust */}
-      <section id="privacy" className="py-20 bg-neutral-950">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-8 text-center">
-          {[
-            'Complete Privacy',
-            'Verified Profiles',
-            'Safe & Private Locations',
-            'Direct & Secure Contact',
-          ].map(item => (
-            <div
-              key={item}
-              className="p-6 rounded-2xl border border-neutral-800 bg-neutral-900/40"
-            >
-              <p className="font-medium">{item}</p>
+      {/* TRUST */}
+      <section id="privacy" className="py-20">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6 text-center">
+          {["100% Confidential", "Verified Profiles", "Discreet Locations", "Premium Experience"].map(t => (
+            <div key={t} className="p-6 rounded-xl bg-neutral-900/60 border border-neutral-800">
+              {t}
             </div>
           ))}
         </div>
       </section>
 
-      {/* Featured Profiles */}
-      <section id="profiles" className="py-24 bg-neutral-900/30">
+      {/* FEATURED */}
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)] text-center">
-            Featured Profiles
+          <h2 className="text-3xl font-[var(--font-playfair)] text-center">
+            Featured Companions
           </h2>
-          <p className="text-neutral-400 text-center mt-4">
-            Carefully selected and fully verified companions.
-          </p>
 
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {models.map(model => (
-              <div
-                key={model.id}
-                className="rounded-2xl overflow-hidden border border-neutral-800 bg-neutral-950"
-              >
-                <div className="h-72 w-full flex items-center justify-center overflow-hidden">
-                  <img
-                    src={model.image}
-                    alt={model.name}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <div className="p-6">
-                  <p className="font-medium">{model.name}</p>
-                  <p className="text-sm text-neutral-400">
-                    Karachi • Verified Profile
-                  </p>
-                  <a
-                    href="#contact"
-                    className="inline-block mt-4 text-amber-400 hover:underline"
-                  >
-                    View Details
-                  </a>
+            {[1, 2, 3].map(i => (
+              <div key={i} className="rounded-2xl overflow-hidden bg-neutral-950 border border-neutral-800">
+                <img
+                  src={`/model${i}.jpg`}
+                  className="h-80 w-full object-cover hover:scale-105 transition"
+                />
+                <div className="p-5">
+                  <p className="font-medium">Model {i}</p>
+                  <p className="text-sm text-neutral-400">Karachi • Verified</p>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* View More Button */}
-          <div className="mt-12 text-center">
+          <div className="text-center mt-12">
             <a
-              href="/companions/"
-              className="inline-block px-8 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300 transition"
+              href="/companions"
+              className="inline-block px-8 py-3 rounded-full bg-neutral-800 hover:bg-neutral-700"
             >
-              View More Profiles
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience */}
-      <section id="experience" className="py-24 bg-neutral-950">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)]">
-            Services We Offer
-          </h2>
-          <p className="mt-6 text-neutral-400">
-            Simple, respectful, and based on comfort and mutual understanding.
-          </p>
-
-          <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              'Dinner Companion',
-              'Event Companion',
-              'Travel Companion',
-              'Private Meetups',
-            ].map(item => (
-              <div
-                key={item}
-                className="p-6 rounded-xl border border-neutral-800 bg-neutral-900/40"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section
-        id="contact"
-        className="py-28 bg-gradient-to-br from-black to-neutral-950"
-      >
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-[var(--font-playfair)]">
-            Contact With Confidence
-          </h2>
-          <p className="mt-6 text-neutral-400">
-            Your details stay private. Contact us directly to get started.
-          </p>
-
-          <div className="mt-10">
-            <a
-              href="https://wa.me/0000000000"
-              className="px-10 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300 transition"
-            >
-              WhatsApp Contact
+              View All Companions
             </a>
           </div>
         </div>
