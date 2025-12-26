@@ -3,18 +3,21 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="min-h-screen flex items-center justify-center text-center px-6">
-        <div className="max-w-5xl">
+        <div className="max-w-6xl">
           <h1 className="text-4xl md:text-6xl font-[var(--font-playfair)] leading-tight">
-            Premium Escorts & Elite Companionship
+            Rocky Escorts Karachi – Premium Escort Services
             <span className="block text-amber-400 mt-3">
-              In Karachi, Pakistan
+              VIP Female Escorts & Call Girls in Karachi, Pakistan
             </span>
           </h1>
 
-          <p className="mt-6 text-neutral-300 text-lg">
-            Discover verified, discreet, and high-class escort services in Karachi.
-            Our platform connects you with elite companions offering refined,
-            private, and unforgettable experiences.
+          <p className="mt-6 text-neutral-300 text-lg leading-relaxed">
+            Welcome to <strong>Rocky Escorts Karachi</strong>, your trusted destination for
+            <strong> luxury escorts Karachi</strong>, <strong>VIP escorts Karachi</strong>,
+            and <strong>elite escorts in Karachi</strong>. We provide
+            <strong> discreet escorts Karachi</strong> and
+            <strong> high class escorts Karachi</strong> for clients seeking
+            privacy, elegance, and unforgettable companionship.
           </p>
 
           <div className="mt-10 flex justify-center gap-4">
@@ -22,13 +25,13 @@ export default function HomePage() {
               href="/companions"
               className="px-8 py-4 rounded-full bg-amber-400 text-neutral-900 font-semibold hover:bg-amber-300"
             >
-              View Companions
+              View Escorts in Karachi
             </a>
             <a
               href="#privacy"
               className="px-8 py-4 rounded-full border border-neutral-700 hover:border-neutral-500"
             >
-              Our Discretion
+              Discreet Booking
             </a>
           </div>
         </div>
@@ -38,10 +41,10 @@ export default function HomePage() {
       <section id="privacy" className="py-20 bg-neutral-950/40">
         <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-6 text-center">
           {[
-            "100% Confidential Escort Services",
-            "Verified & Screened Profiles",
-            "Discreet Locations Across Karachi",
-            "Luxury Companionship Experience",
+            "100% Confidential Escort Services Karachi",
+            "Verified & Trusted Escorts in Karachi",
+            "Luxury & Premium Escorts Experience",
+            "24/7 Escorts Karachi Availability",
           ].map(t => (
             <div
               key={t}
@@ -57,39 +60,54 @@ export default function HomePage() {
       <section className="py-24">
         <div className="max-w-5xl mx-auto px-6 space-y-10">
           <h2 className="text-3xl font-[var(--font-playfair)]">
-            High-Class Escort Services in Karachi
+            Best Escorts in Karachi – Rocky Escorts Pakistan
           </h2>
 
           <p className="text-neutral-300 leading-relaxed">
-            We provide premium escort services in Karachi for clients seeking
-            elegance, discretion, and professionalism. Every companion featured
-            on our platform is carefully verified to ensure authenticity,
-            privacy, and a refined experience. Whether you are visiting Karachi
-            or reside locally, our services are designed to meet the highest
-            standards of companionship.
+            Rocky Escorts Pakistan offers <strong>escort services Karachi Pakistan</strong>
+            with a curated selection of <strong>female escorts Karachi</strong>,
+            <strong>model escorts Karachi</strong>, and
+            <strong>elite escorts in Karachi</strong>.
+            Whether you are searching for <strong>Karachi call girls</strong>,
+            <strong>VIP call girls Karachi</strong>, or
+            <strong>Karachi escort girls</strong>,
+            we ensure safe, premium, and discreet experiences.
           </p>
 
           <h3 className="text-2xl font-[var(--font-playfair)]">
-            Why Choose Our Karachi Escort Agency?
+            Karachi Escort Agency You Can Trust
           </h3>
 
           <p className="text-neutral-300 leading-relaxed">
-            Unlike ordinary escort listings, we focus on quality over quantity.
-            Our companions are selected based on appearance, communication,
-            etiquette, and discretion. Clients across Karachi trust us for safe,
-            confidential, and premium escort arrangements tailored to individual
-            preferences.
+            As a leading <strong>escort agency Karachi</strong> and
+            <strong>Karachi escort agency</strong>, we specialize in
+            <strong>independent escorts Karachi</strong>,
+            <strong>Karachi independent call girls</strong>,
+            and <strong>Pakistani escorts Karachi</strong>.
+            Our clients choose us for reliability, privacy, and premium service.
           </p>
 
           <h3 className="text-2xl font-[var(--font-playfair)]">
-            Discreet & Private Escort Bookings
+            Luxury, Affordable & Local Escorts in Karachi
           </h3>
 
           <p className="text-neutral-300 leading-relaxed">
-            Privacy is our highest priority. All bookings are handled securely,
-            ensuring complete confidentiality. Whether you prefer hotel visits
-            or private locations, our Karachi escort services guarantee
-            discretion at every step.
+            We offer <strong>affordable escorts Karachi</strong>,
+            <strong>Karachi cheap escorts</strong>, and
+            <strong>high profile escorts Karachi</strong>
+            without compromising quality.
+            Find <strong>Karachi local escorts</strong>,
+            <strong>Karachi hotel escorts</strong>,
+            <strong>outcall escorts Karachi</strong>, and
+            <strong>incall escorts Karachi</strong> tailored to your needs.
+          </p>
+
+          <p className="text-neutral-300 leading-relaxed">
+            Explore <strong>Karachi nightlife escorts</strong>,
+            <strong>party escorts Karachi</strong>,
+            <strong>Karachi travel companions</strong>,
+            and <strong>discreet escorts Karachi</strong> for business trips,
+            private meetings, or exclusive events.
           </p>
         </div>
       </section>
@@ -98,12 +116,15 @@ export default function HomePage() {
       <section className="py-24 bg-neutral-950/40">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-3xl font-[var(--font-playfair)] text-center">
-            Featured Escorts in Karachi
+            Featured Elite Escorts in Karachi
           </h2>
 
           <p className="mt-4 text-center text-neutral-400 max-w-3xl mx-auto">
-            Explore some of our most popular and highly requested companions,
-            available across Karachi for premium escort experiences.
+            Browse <strong>premium escorts Karachi</strong>,
+            <strong>Karachi female companions</strong>,
+            <strong>mature escorts Karachi</strong>,
+            <strong>young escorts Karachi</strong>,
+            and <strong>Karachi Russian escorts</strong> available 24/7.
           </p>
 
           <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -114,13 +135,13 @@ export default function HomePage() {
               >
                 <img
                   src={`/model${i}.jpg`}
-                  alt={`Elite Karachi Escort ${i}`}
+                  alt={`Luxury Escort Girls Karachi ${i}`}
                   className="h-80 w-full object-cover hover:scale-105 transition"
                 />
                 <div className="p-5">
-                  <p className="font-medium">Elite Companion</p>
+                  <p className="font-medium">Luxury Escort</p>
                   <p className="text-sm text-neutral-400">
-                    Karachi • Verified Profile
+                    Verified • Trusted Escorts in Karachi
                   </p>
                 </div>
               </div>
@@ -132,7 +153,7 @@ export default function HomePage() {
               href="/companions"
               className="inline-block px-8 py-3 rounded-full bg-neutral-800 hover:bg-neutral-700"
             >
-              View All Escorts in Karachi
+              Escort Booking Karachi
             </a>
           </div>
         </div>
@@ -142,36 +163,49 @@ export default function HomePage() {
       <section className="py-24">
         <div className="max-w-5xl mx-auto px-6 space-y-8">
           <h2 className="text-3xl font-[var(--font-playfair)]">
-            Frequently Asked Questions
+            Karachi Escort Services – FAQs
           </h2>
 
           <div>
             <h3 className="font-medium text-lg">
-              Are your Karachi escorts verified?
+              Are Rocky Escorts Karachi verified?
             </h3>
             <p className="text-neutral-400 mt-2">
-              Yes. Every companion is screened and verified to ensure safety,
-              authenticity, and professionalism.
+              Yes. All profiles are screened and reviewed. Read
+              <strong> Rocky escorts reviews</strong> and
+              <strong> escort reviews Karachi</strong> for client feedback.
             </p>
           </div>
 
           <div>
             <h3 className="font-medium text-lg">
-              Is my privacy guaranteed?
+              How do I find escorts near me in Karachi?
             </h3>
             <p className="text-neutral-400 mt-2">
-              Absolutely. All bookings and conversations are handled with strict
-              confidentiality.
+              We offer <strong>escorts near me Karachi</strong> with fast
+              <strong> Karachi escort booking</strong> and transparent
+              <strong> Karachi escort rates</strong>.
             </p>
           </div>
 
           <div>
             <h3 className="font-medium text-lg">
-              Do you offer escort services across Karachi?
+              Do you provide escort numbers and directory?
             </h3>
             <p className="text-neutral-400 mt-2">
-              Yes. Our companions are available in major areas of Karachi,
-              including DHA, Clifton, PECHS, and surrounding locations.
+              Yes. Our platform works as an <strong>escort directory Karachi</strong>
+              with secure access to <strong>escort girls numbers Karachi</strong>.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="font-medium text-lg">
+              Are services available 24/7?
+            </h3>
+            <p className="text-neutral-400 mt-2">
+              Absolutely. We provide <strong>24/7 escorts Karachi</strong>,
+              including <strong>Karachi premium escorts</strong> and
+              <strong>Rocky call girls Karachi</strong>.
             </p>
           </div>
         </div>
