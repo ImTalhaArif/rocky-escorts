@@ -80,7 +80,7 @@ export default function HomePage() {
 
           <p className="text-neutral-300 leading-relaxed">
             As a leading <strong>escort agency Karachi</strong> and
-            <strong>Karachi escort agency</strong>, we specialize in
+            <strong> &nbsp;Karachi escort agency</strong>, we specialize in
             <strong>independent escorts Karachi</strong>,
             <strong>Karachi independent call girls</strong>,
             and <strong>Pakistani escorts Karachi</strong>.
